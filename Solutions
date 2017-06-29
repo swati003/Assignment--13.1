@@ -1,0 +1,38 @@
+1. What is RDD?
+
+answer : 
+
+Resilient Distributed Datasets (RDD) is a fundamental data structure of Spark. It is an immutable distributed collection of objects. Each dataset in RDD is divided into logical partitions, which may be computed on different nodes of the cluster. RDDs can contain any type of Python, Java, or Scala objects, including user-defined classes.
+
+Formally, an RDD is a read-only, partitioned collection of records. RDDs can be created through deterministic operations on either data on stable storage or other RDDs. RDD is a fault-tolerant collection of elements that can be operated on in parallel.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Define Partitions.
+
+solution :
+
+Depending on how you look at Spark (programmer, devop, admin), an RDD is about the content (developer’s and data scientist’s perspective) or how it gets spread out over a cluster (performance), i.e. how many partitions an RDD represents.
+A partition (aka split) is a logical chunk of a large distributed data set.
+----------------------------------------------------------------------------------------------------
+3. What operations does RDD support?
+Mapreduce operations,interactive and iterative rdd operations 
+--------------------------------------------------------------------------
+4. What do you understand by Transformations in Spark?
+Transformations are lazy operations on a RDD that create one or many new RDDs, e.g. map, filter, reduceByKey, join, cogroup, randomSplit.
+transformation: RDD => RDD
+transformation: RDD => Seq[RDD]
+In other words, transformations are functions that take a RDD as the input and produce one or many RDDs as the output. They do not change the input RDD (since RDDs are immutable and hence cannot be modified), but always produce one or more new RDDs by applying the computations they represent.
+By applying transformations you incrementally build a RDD lineage with all the parent RDDs of the final RDD(s).
+Trans5.formations are lazy, i.e. are not executed immediately. Only after calling an action are transformations executed.
+After executing a transformation, the result RDD(s) will always be different from their parents and can be smaller (e.g. filter, count, distinct, sample), bigger (e.g. flatMap, union, cartesian) or the same size (e.g. map).
+
+-------------------------------------
+define action
+
+Actions return final results of RDD computations. Actions triggers execution using lineage graph to load the data into original RDD, carry out all intermediate transformations and return final results to Driver program or write it out to file system.
+
+First, take, reduce, collect, count are some of the actions in spark.
+
+If you want to see how many american origins cars are there in our data.
+
+
+
